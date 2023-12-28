@@ -6,8 +6,13 @@ class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //user model cretae with uid
-  UserModel? _userWithFirebaseUid(User? user){
-    return user!= null? UserModel(uid: user.uid) : null;
+  UserModel? _userWithFirebaseUid(User? user) {
+    return user != null ? UserModel(uid: user.uid) : null;
+  }
+
+  //stream model cretae with uid
+  Stream<UserModel?> get user {
+    return _auth.authStateChanges().map(_userWithFirebaseUid);
   }
 
   //Singn in as aononymasly
@@ -15,7 +20,7 @@ class AuthServices {
     try {
       UserCredential result = await _auth.signInAnonymously();
       User? user = result.user;
-      return user;
+      return _userWithFirebaseUid(user);
     } catch (e) {
       print(e.toString());
       return null;
