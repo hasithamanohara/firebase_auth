@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
         backgroundColor: bgBlack,
       ),
       body: Padding(
-        padding:const EdgeInsets.only(top:1, right: 3, left: 10),
+        padding: const EdgeInsets.only(top: 1, right: 3, left: 10),
         child: Column(
           children: [
             //description
@@ -33,9 +33,14 @@ class _LoginState extends State<Login> {
               description,
               style: descriptionStyle,
             ),
-            Image.asset('assets/images/man.png', height: 200, width: 200,),
+            const SizedBox(
+              height:25,
+            ),
+            Center(
+                child: Image.asset('assets/images/man.png',
+                    height: 180, width: 180)),
             const Form(
-                child:Column(
+                child: Column(
               children: [
                 //email
                 //pasword
