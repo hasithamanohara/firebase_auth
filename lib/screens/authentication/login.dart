@@ -15,6 +15,12 @@ class _LoginState extends State<Login> {
   //ref for the log in statte
   final AuthServices _auth = AuthServices();
 
+  //global key for form identify
+  final _formKey = GlobalKey<FormState>();
+  //variable for store valuve of password and email address
+  String email ="";
+  String password ="";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +45,24 @@ class _LoginState extends State<Login> {
             Center(
                 child: Image.asset('assets/images/man.png',
                     height: 180, width: 180)),
-            const Form(
+            Form(
                 child: Column(
+                  key: _formKey,
               children: [
                 //email
+                TextFormField(
+                  validator: (value) {
+                    if(value == null || value.isEmpty){
+                      return 'please enter valid text';
+                    }
+                    return null;
+                  },
+                ),
                 //pasword
+                TextFormField(),
                 //google
                 //register
-                //button
+                //log in button
                 //anonymas
               ],
             ))
